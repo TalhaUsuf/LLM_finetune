@@ -1,0 +1,233 @@
+- answer: Share exciting models with the community through the Hub, create tutorials
+    and projects using different open-source libraries, organize local sprints, translate
+    the Hugging Face Course, the Transformers documentation, or the Educational Toolkit.
+  context: "* **Where and how can I contribute?**\n  \nIt depends on your interests.\
+    \ Here are some ideas of areas where you can contribute, but you should work on\
+    \ things that get **you** excited!\n\n- Share exciting models with the community\
+    \ through the Hub. These can be for Computer Vision, Reinforcement Learning, and\
+    \ any other ML domain!\n- Create tutorials and projects using different open-source\
+    \ libraries\u2014for example, Stable-Baselines 3, fastai, or Keras.\n- Organize\
+    \ local sprints to promote open source Machine Learning in different languages\
+    \ or niches. For example, the [Somos NLP Hackathon](https://huggingface.co/hackathon-pln-es)\
+    \ focused on Spanish speakers. The [HugGAN sprint](https://github.com/huggingface/community-events/tree/main/huggan)\
+    \ focused on generative models.\n- Translate the [Hugging Face Course](https://github.com/huggingface/course#-languages-and-translations),\
+    \ the [Transformers documentation](https://github.com/huggingface/transformers/blob/main/docs/TRANSLATING.md)\
+    \ or the [Educational Toolkit](https://github.com/huggingface/education-toolkit/blob/main/TRANSLATING.md).\n\
+    - [Doc with specific projects](https://docs.google.com/document/d/11mh36a4fgBlj8sh3_KoP2TckuPcnD-_S_UAtsEWgs50/edit)\
+    \ where contributions would be valuable. The Hugging Face team will frequently\
+    \ update the doc with new projects.\n\nPlease share in the #looking-for-contributors\
+    \ channel on the [Hugging Face Discord](https://hf.co/join/discord) if you want\
+    \ to work on a particular project.\n\n* **Will I be an employee of Hugging Face?**\n\
+    \  \nNo, the Fellowship does not mean you are an employee of Hugging Face. However,\
+    \ feel free to mention in any forum, including LinkedIn, that you are a Hugging\
+    \ Face Fellow. Hugging Face is growing and this could be a good path for a bigger\
+    \ relationship in the future \U0001F60E. Check the [Hugging Face job board](https://hf.co/jobs)\
+    \ for updated opportunities."
+  metadata: huggingface/blog/blob/main/fellowship.md
+  question: What are some ideas of areas where I can contribute to the Hugging Face
+    community?
+- answer: 80.25%
+  context: "Weights: https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-regnet/regnetx_320-8ea38b93.pth\n\
+    \  Results:\n  - Task: Image Classification\n    Dataset: ImageNet\n    Metrics:\n\
+    \      Top 1 Accuracy: 80.25%\n      Top 5 Accuracy: 95.03%\n-->"
+  metadata: huggingface/pytorch-image-models/blob/main/hfdocs/source/models/regnetx.mdx
+  question: What is the top 1 accuracy of the model on the ImageNet dataset?
+- answer: feature-extraction
+  context: 'Some tasks might also require additional params in the request. Here is
+    an
+
+    example using a `zero-shot-classification` model.
+
+
+    ```python
+
+    inference = InferenceApi("typeform/distilbert-base-uncased-mnli", token=API_TOKEN)
+
+    inputs = "Hi, I recently bought a device from your company but it is not working
+    as advertised and I would like to get reimbursed!"
+
+    params = {"candidate_labels":["refund", "legal", "faq"]}
+
+    inference(inputs, params)
+
+    >> {''sequence'': ''Hi, I recently bought a device from your company but it is
+    not working as advertised and I would like to get reimbursed!'', ''labels'': [''refund'',
+    ''faq'', ''legal''], ''scores'': [0.9378499388694763, 0.04914155602455139, 0.013008488342165947]}
+
+    ```
+
+
+    Finally, there are some models that might support multiple tasks. For example,
+
+    `sentence-transformers` models can do `sentence-similarity` and
+
+    `feature-extraction`. You can override the configured task when initializing the
+
+    API.
+
+
+    ```python
+
+    inference = InferenceApi("bert-base-uncased", task="feature-extraction", token=API_TOKEN)
+
+    ```'
+  metadata: huggingface/huggingface_hub/blob/main/src/huggingface_hub/README.md
+  question: What is the task set when initializing the `InferenceApi` with the model
+    "bert-base-uncased" and token `API_TOKEN`?
+- answer: 355 million
+  context: "And just by switching out the base Sentence Transformer model to a multilingual\
+    \ one, SetFit can function seamlessly in multilingual contexts. In our [experiments](https://arxiv.org/abs/2209.11055),\
+    \ SetFit\u2019s performance shows promising results on classification in German,\
+    \ Japanese, Mandarin, French and Spanish, in both in-language and cross linguistic\
+    \ settings.\n\n\n## Benchmarking SetFit\n\nAlthough based on much smaller models\
+    \ than existing few-shot methods, SetFit performs on par or better than state\
+    \ of the art few-shot regimes on a variety of benchmarks. On [RAFT](https://huggingface.co/spaces/ought/raft-leaderboard),\
+    \ a few-shot classification benchmark, SetFit Roberta (using the [`all-roberta-large-v1`](https://huggingface.co/sentence-transformers/all-roberta-large-v1)\
+    \ model) with 355 million parameters outperforms PET and GPT-3. It places just\
+    \ under average human performance and the 11 billion parameter T-few - a model\
+    \ 30 times the size of SetFit Roberta. SetFit also outperforms the human baseline\
+    \ on 7 of the 11 RAFT tasks.\n\n| Rank | Method | Accuracy | Model Size | \n|\
+    \ :------: | ------ | :------: | :------: | \n| 2 | T-Few | 75.8 | 11B | \n| 4\
+    \ | Human Baseline | 73.5 | N/A | \n| 6 | SetFit (Roberta Large) | 71.3 | 355M\
+    \ |\n| 9 | PET | 69.6 | 235M |\n| 11 | SetFit (MP-Net) | 66.9 | 110M |\n| 12 |\
+    \ GPT-3 | 62.7 | 175 B |\n\n<p align=\"center\">\n    <em>Prominent methods on\
+    \ the RAFT leaderboard (as of September 2022)</em>\n</p>\n\nOn other datasets,\
+    \ SetFit shows robustness across a variety of tasks. As shown in the figure below,\
+    \ with just 8 examples per class, it typically outperforms PERFECT, ADAPET and\
+    \ fine-tuned vanilla transformers. SetFit also achieves comparable results to\
+    \ T-Few 3B, despite being prompt-free and 27 times smaller.\n\n<p align=\"center\"\
+    >\n    <img src=\"assets/103_setfit/three-tasks.png\" width=700>\n</p>\n<p align=\"\
+    center\">\n    <em>Comparing Setfit performance against other methods on 3 classification\
+    \ datasets.</em>\n</p>\n\n\n\n\n## Fast training and inference"
+  metadata: huggingface/blog/blob/main/setfit.md
+  question: What is the model size of SetFit Roberta?
+- answer: Base
+  context: "Gradio Demo: diff_texts\n\n\n```\n!pip install -q gradio \n```\n\n\n```\n\
+    from difflib import Differ\n\nimport gradio as gr\n\n\ndef diff_texts(text1, text2):\n\
+    \    d = Differ()\n    return [\n        (token[2:], token[0] if token[0] != \"\
+    \ \" else None)\n        for token in d.compare(text1, text2)\n    ]\n\n\ndemo\
+    \ = gr.Interface(\n    diff_texts,\n    [\n        gr.Textbox(\n            label=\"\
+    Text 1\",\n            info=\"Initial text\",\n            lines=3,\n        \
+    \    value=\"The quick brown fox jumped over the lazy dogs.\",\n        ),\n \
+    \       gr.Textbox(\n            label=\"Text 2\",\n            info=\"Text to\
+    \ compare\",\n            lines=3,\n            value=\"The fast brown fox jumps\
+    \ over lazy dogs.\",\n        ),\n    ],\n    gr.HighlightedText(\n        label=\"\
+    Diff\",\n        combine_adjacent=True,\n        show_legend=True,\n        color_map={\"\
+    +\": \"red\", \"-\": \"green\"}),\n    theme=gr.themes.Base()\n)\nif __name__\
+    \ == \"__main__\":\n    demo.launch()\n\n```"
+  metadata: gradio-app/gradio/blob/main/demo/diff_texts/run.ipynb
+  question: What is the theme used in the Gradio demo?
+- answer: abidlabs
+  context: '- [#6680](https://github.com/gradio-app/gradio/pull/6680) [`cfd5700`](https://github.com/gradio-app/gradio/commit/cfd57005bce715271c3073ecd322890b8d30f594)
+    - Cause `gr.ClearButton` to reset the value of `gr.State`.  Thanks [@abidlabs](https://github.com/abidlabs)!
+
+    - [#6603](https://github.com/gradio-app/gradio/pull/6603) [`6b1401c`](https://github.com/gradio-app/gradio/commit/6b1401c514c2ec012b0a50c72a6ec81cb673bf1d)
+    - chore(deps): update dependency marked to v11.  Thanks [@renovate](https://github.com/apps/renovate)!
+
+    - [#6666](https://github.com/gradio-app/gradio/pull/6666) [`30c9fbb`](https://github.com/gradio-app/gradio/commit/30c9fbb5c74f0dc879e85dbdb6778c0782aeff38)
+    - Set gradio api server from env.  Thanks [@aisensiy](https://github.com/aisensiy)!
+
+    - [#6677](https://github.com/gradio-app/gradio/pull/6677) [`51b54b3`](https://github.com/gradio-app/gradio/commit/51b54b3411934ce46a27e7d525dd90b43c9fc016)
+    - Tweak to our bug issue template.  Thanks [@abidlabs](https://github.com/abidlabs)!
+
+    - [#6598](https://github.com/gradio-app/gradio/pull/6598) [`7cbf96e`](https://github.com/gradio-app/gradio/commit/7cbf96e0bdd12db7ecac7bf99694df0a912e5864)
+    - Issue 5245: consolidate usage of requests and httpx.  Thanks [@cswamy](https://github.com/cswamy)!
+
+    - [#6704](https://github.com/gradio-app/gradio/pull/6704) [`24e0481`](https://github.com/gradio-app/gradio/commit/24e048196e8f7bd309ef5c597d4ffc6ca4ed55d0)
+    - Hotfix: update `huggingface_hub` dependency version.  Thanks [@abidlabs](https://github.com/abidlabs)!
+
+    - [#6432](https://github.com/gradio-app/gradio/pull/6432) [`bdf81fe`](https://github.com/gradio-app/gradio/commit/bdf81fead86e1d5a29e6b036f1fff677f6480e6b)
+    - Lite: Set the home dir path per appId at each runtime.  Thanks [@whitphx](https://github.com/whitphx)!'
+  metadata: gradio-app/gradio/blob/main/CHANGELOG.md
+  question: 'Who fixed the issue mentioned in pull request #6680?'
+- answer: ImageToTextPipeline
+  context: "[[autodoc]] VideoClassificationPipeline\n    - __call__\n    - all\n\n\
+    ### ZeroShotImageClassificationPipeline\n\n[[autodoc]] ZeroShotImageClassificationPipeline\n\
+    \    - __call__\n    - all\n\n### ZeroShotObjectDetectionPipeline\n\n[[autodoc]]\
+    \ ZeroShotObjectDetectionPipeline\n    - __call__\n    - all\n\n## Natural Language\
+    \ Processing\n\nPipelines available for natural language processing tasks include\
+    \ the following.\n\n### ConversationalPipeline\n\n[[autodoc]] Conversation\n\n\
+    [[autodoc]] ConversationalPipeline\n    - __call__\n    - all\n\n### FillMaskPipeline\n\
+    \n[[autodoc]] FillMaskPipeline\n    - __call__\n    - all\n\n### QuestionAnsweringPipeline\n\
+    \n[[autodoc]] QuestionAnsweringPipeline\n    - __call__\n    - all\n\n### SummarizationPipeline\n\
+    \n[[autodoc]] SummarizationPipeline\n    - __call__\n    - all\n\n### TableQuestionAnsweringPipeline\n\
+    \n[[autodoc]] TableQuestionAnsweringPipeline\n    - __call__\n\n### TextClassificationPipeline\n\
+    \n[[autodoc]] TextClassificationPipeline\n    - __call__\n    - all\n\n### TextGenerationPipeline\n\
+    \n[[autodoc]] TextGenerationPipeline\n    - __call__\n    - all\n\n### Text2TextGenerationPipeline\n\
+    \n[[autodoc]] Text2TextGenerationPipeline\n    - __call__\n    - all\n\n### TokenClassificationPipeline\n\
+    \n[[autodoc]] TokenClassificationPipeline\n    - __call__\n    - all\n\n### TranslationPipeline\n\
+    \n[[autodoc]] TranslationPipeline\n    - __call__\n    - all\n\n### ZeroShotClassificationPipeline\n\
+    \n[[autodoc]] ZeroShotClassificationPipeline\n    - __call__\n    - all\n\n##\
+    \ Multimodal\n\nPipelines available for multimodal tasks include the following.\n\
+    \n### DocumentQuestionAnsweringPipeline\n\n[[autodoc]] DocumentQuestionAnsweringPipeline\n\
+    \    - __call__\n    - all\n\n### FeatureExtractionPipeline\n\n[[autodoc]] FeatureExtractionPipeline\n\
+    \    - __call__\n    - all\n\n### ImageToTextPipeline\n\n[[autodoc]] ImageToTextPipeline\n\
+    \    - __call__\n    - all\n\n### MaskGenerationPipeline\n\n[[autodoc]] MaskGenerationPipeline\n\
+    \    - __call__\n    - all\n\n### VisualQuestionAnsweringPipeline"
+  metadata: huggingface/transformers/blob/main/docs/source/en/main_classes/pipelines.md
+  question: What is an available pipeline for multimodal tasks in the given context?
+- answer: Using the argilla Python library.
+  context: "<div class=\"flex justify-center\">\n<img src=\"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/spaces-argilla-embed-space.png\"\
+    />\n</div>\n\n<Tip>\nArgilla Datasets cannot be uploaded directly from the UI.\
+    \ Most Argilla users upload datasets programmatically using the argilla Python\
+    \ library but you can also use Argilla Data Manager, a simple Streamlit app.\n\
+    </Tip>\n\nFor uploading Argilla datasets, there are two options:\n\n1. You can\
+    \ use the **argilla Python library** inside Jupyter, Colab, VS Code, or other\
+    \ Python IDE. In this case, you will read read your source file (`csv`, `json`,\
+    \ etc.) and transform it into Argilla records. We recommend to read the [basics\
+    \ guide](https://docs.argilla.io/en/latest/guides/how_to.html). \n2. You can use\
+    \ the **[no-code data manager app](https://huggingface.co/spaces/argilla/data-manager)**\
+    \ to upload a file and log it into Argilla. If you need to transform your dataset\
+    \ before uploading it into Argilla, we recommend the first option.\n\nTo follow\
+    \ a complete tutorial with Colab or Jupyter, [check this tutorial](https://docs.argilla.io/en/latest/tutorials/notebooks/training-textclassification-setfit-fewshot.html).\
+    \ For a quick step-by-step example using the `argilla` Python library, keep reading.\n\
+    \nFirst, you need to open a Python IDE, we highly recommend using Jupyter notebooks\
+    \ or Colab.\n\nSecond, you need to `pip` install `datasets` and `argilla` on Colab\
+    \ or your local machine:\n\n```bash\npip install datasets argilla\n```\n\nThird,\
+    \ you need to read the dataset using the `datasets` library. For reading other\
+    \ file types, check the [basics guide](https://docs.argilla.io/en/latest/guides/how_to.html).\n\
+    \n```python\nfrom datasets import load_dataset\n\ndataset = load_dataset(\"dvilasuero/banking_app\"\
+    , split=\"train\").shuffle()\n```\n\nFourth, you need to init the `argilla` client\
+    \ with your Space URL and API key and upload the records into Argilla:\n\n```python\n\
+    import argilla as rg\nfrom datasets import load_dataset"
+  metadata: huggingface/hub-docs/blob/main/docs/hub/spaces-sdks-docker-argilla.md
+  question: How can you upload an Argilla dataset programmatically?
+- answer: Japanese text.
+  context: "## What\u2019s Next?\nCompared to Stable Diffusion, Japanese Stable Diffusion\
+    \ is not as versatile and still has some accuracy issues. However, through the\
+    \ development and release of Japanese Stable Diffusion, we hope to communicate\
+    \ to the research community the importance and potential of language-specific\
+    \ model development.\n\nrinna Co., Ltd. has released GPT and BERT models for Japanese\
+    \ text, and CLIP, CLOOB, and Japanese Stable Diffusion models for Japanese text\
+    \ and images. We will continue to improve these models and next we will consider\
+    \ releasing models based on self-supervised learning specialized for Japanese\
+    \ speech."
+  metadata: huggingface/blog/blob/main/japanese-stable-diffusion.md
+  question: What has rinna Co., Ltd. released models for?
+- answer: Newly initialized layers mentioned in a warning message.
+  context: 'In PEFT, we try to correctly guess the `modules_to_save` if you provide
+    the `task_type` argument in the config. This should work for transformers models
+    that follow the standard naming scheme. It is always a good idea to double check
+    though because we can''t guarantee all models follow the naming scheme.
+
+
+    When you load a transformers model that has randomly initialized layers, you should
+    see a warning along the lines of:
+
+
+    ```
+
+    Some weights of <MODEL> were not initialized from the model checkpoint at <ID>
+    and are newly initialized: [<LAYER_NAMES>].
+
+    You should probably TRAIN this model on a down-stream task to be able to use it
+    for predictions and inference.
+
+    ```
+
+
+    The mentioned layers should be added to `modules_to_save` in the config to avoid
+    the described problem.'
+  metadata: huggingface/peft/blob/main/docs/source/developer_guides/troubleshooting.md
+  question: What layers should be added to `modules_to_save` in the config to avoid
+    a specific problem?
